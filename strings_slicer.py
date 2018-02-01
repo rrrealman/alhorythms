@@ -1,14 +1,14 @@
 
 from string import ascii_lowercase as letters
-
+from argparse import ArgumentParser
 
 
 class StringsGenerator:
 
     LAST_LETTER = len(letters) - 1
 
-    def __init__(self):
-        self.positions = [0, ]
+    def __init__(self, positions=None):
+        self.positions = list(positions) or [0, ]
 
     def __iter__(self):
         return self
@@ -20,15 +20,15 @@ class StringsGenerator:
             self.positions[-1] += 1
         else:
             self.positions[-1] = 0
-            self.reset_positions()
+            self.increment_positions()
 
         return res
 
     def to_string(self):
-        res = [letters[position] for position in self.positions]
-        return ''.join(res)
+        chars = [letters[position] for position in self.positions]
+        return ''.join(chars)
 
-    def reset_positions(self, ):
+    def increment_positions(self):
         current = len(self.positions) - 2
         while current >= 0:
             if self.positions[current] < self.LAST_LETTER:
@@ -40,10 +40,26 @@ class StringsGenerator:
         else:
             self.positions.append(0)
 
+    @classmethod
+    def from_chars(cls, chars):
+        positions = [letters.index(char) for char in chars]
+        return cls(positions)
+
+
+def generate_strings(begin, end):
+    strings_generator = iter(StringsGenerator.from_chars(begin))
+    word = next(strings_generator)
+    while len(word) < len(end) or word <= end:
+        yield word
+        word = next(strings_generator)
+
 
 if __name__ == '__main__':
-    import time
-    gen = StringsGenerator()
-    for word in iter(gen):
+    parser = ArgumentParser()
+    parser.add_argument('--from', dest='begin')
+    parser.add_argument('--to', dest='end')
+    args = parser.parse_args()
+    for word in generate_strings(args.begin, args.end):
         print(word)
-        time.sleep(0.5)
+
+
