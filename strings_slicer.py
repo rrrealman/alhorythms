@@ -1,4 +1,67 @@
 
+"""
+Написать скрипт, который выводит все строки, лексикографически и по длине,
+находящиеся между двумя заданными, и состоящие только из строчных латинских
+букв.
+Пример:
+./strings --from a --to bb
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+aa
+ab
+ac
+ad
+ae
+af
+ag
+ah
+ai
+aj
+ak
+al
+am
+an
+ao
+ap
+aq
+ar
+as
+at
+au
+av
+aw
+ax
+ay
+az
+ba
+bb
+"""
+
+
 from string import ascii_lowercase as letters
 from argparse import ArgumentParser
 
