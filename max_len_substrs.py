@@ -4,7 +4,7 @@ from string import ascii_uppercase as letters
 
 def max_len_substrs(string):
 
-    lens = {}
+    chars = {}
     counter = 1
     prev_char = string[0]
 
@@ -12,16 +12,13 @@ def max_len_substrs(string):
         if char == prev_char:
             counter += 1
         else:
-            if prev_char not in lens or lens[prev_char] < counter:
-                lens[prev_char] = counter
+            if prev_char not in chars or chars[prev_char] < counter:
+                chars[prev_char] = counter
             counter = 1
-
         prev_char = char
-
-    if prev_char not in lens or lens[prev_char] < counter:
-        lens[prev_char] = counter
-
-    return lens
+    if prev_char not in chars or chars[prev_char] < counter:
+        chars[prev_char] = counter
+    return chars
 
 
 def generate_test_string():
