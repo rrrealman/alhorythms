@@ -15,8 +15,10 @@ def max_len_substrs(string):
                 chars[prev_char] = counter
             counter = 1
         prev_char = char
+
     if chars.get(prev_char, 0) < counter:
         chars[prev_char] = counter
+
     return chars
 
 
