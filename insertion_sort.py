@@ -1,9 +1,7 @@
 
 def insertion_sort(sequence_arg):
     sequence = sequence_arg[:]
-
-    for current_pos, current in enumerate(sequence[1:], start=1):
-        insertion_pos = current_pos - 1
+    for insertion_pos, current in enumerate(sequence[1:]):
         while insertion_pos >= 0 and sequence[insertion_pos] > current:
             sequence[insertion_pos + 1] = sequence[insertion_pos]
             insertion_pos -= 1
