@@ -1,9 +1,8 @@
 def bin_search(target, sequence):
     beg = 0
-    end = 0
+    end = len(sequence) - 1
 
     while True:
-
         mid = (beg + end) // 2
 
         if sequence[mid] > target:
