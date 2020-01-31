@@ -4,11 +4,10 @@ def bin_search(target, sequence):
 
     while True:
         mid = (beg + end) // 2
-
-        if sequence[mid] > target:
-            end = mid - 1
-        elif sequence[mid] < target:
+        if sequence[mid] < target:
             beg = mid + 1
+        elif sequence[mid] > target:
+            end = mid - 1
         else:
             return mid
 
